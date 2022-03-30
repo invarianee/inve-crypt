@@ -1,0 +1,27 @@
+[package]
+name = "inve-xsalsa20poly1305"
+version = "0.0.1"
+description = "Pure Rust implementation of the XSalsa20Poly1305."
+edition = "2021"
+license = "Apache-2.0"
+keywords = ["aead", "salsa20", "poly1305", "xsalsa20"]
+categories = ["cryptography", "no-std"]
+
+[dependencies]
+aead = { path = "../inve-trait/aead", package = "inve-aead", default-features = false }
+salsa20 = { path = "../inve-stream-cipher/salsa20", package = "inve-salsa20", features = ["zeroize"] }
+poly1305 = { path = "../inve-hash/poly1305", package = "inve-poly1305" }
+rand_core = { version = "0.6", optional = true }
+subtle = { version = "2", default-features = false }
+zeroize = { version = "1", default-features = false }
+
+[features]
+default = ["alloc", "rand_core", "aead/rand_core"]
+std = ["aead/std", "alloc", "rand_core/std"]
+alloc = ["aead/alloc"]
+heapless = ["aead/heapless"]
+stream = ["aead/stream"]
+
+[package.metadata.docs.rs]
+all-features = true
+rustdoc-args = ["--cfg", "docsrs"]

@@ -1,0 +1,18 @@
+[package]
+name    = "inve-rfc6979"
+version = "0.0.1"
+description = "Pure Rust implementation of RFC6979."
+license = "Apache-2.0"
+categories = ["cryptography", "no-std"]
+keywords = ["dsa", "ecdsa", "signature"]
+edition = "2021"
+rust-version = "1.57"
+
+[dependencies]
+inve-bigint = { path = "../../inve-bigint", default-features = false, features = ["generic-array", "zeroize"] }
+hmac = { path = "../../inve-MAC/hmac", package = "inve-hmac", default-features = false, features = ["reset"] }
+zeroize = { version = "1", default-features = false }
+
+[package.metadata.docs.rs]
+all-features = true
+rustdoc-args = ["--cfg", "docsrs"]

@@ -1,0 +1,22 @@
+[package]
+name = "inve-des"
+version = "0.0.1"
+description = "DES and Triple DES (3DES, TDES) block ciphers implementation."
+license = "Apache-2.0"
+edition = "2021"
+rust-version = "1.57"
+keywords = ["crypto", "des", "tdes", "block-cipher"]
+categories = ["cryptography", "no-std"]
+
+[dependencies]
+cipher = { path = "../../../inve-trait/cipher", package = "inve-cipher" }
+
+[dev-dependencies]
+cipher = { path = "../../../inve-trait/cipher", package = "inve-cipher", features = ["dev"] }
+
+[features]
+zeroize = ["cipher/zeroize"]
+
+[package.metadata.docs.rs]
+all-features = true
+rustdoc-args = ["--cfg", "docsrs"]

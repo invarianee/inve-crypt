@@ -1,0 +1,18 @@
+[package]
+name          = "signature_derive"
+version       = "0.0.1"
+license       = "Apache-2.0"
+description   = "Custom derive support for the 'signature' crate"
+readme        = "README.md"
+edition       = "2018"
+keywords      = ["crypto", "ecdsa", "ed25519", "signature", "signing"]
+categories    = ["cryptography", "no-std"]
+
+[lib]
+proc-macro = true
+
+[dependencies]
+proc-macro2 = "1"
+quote = "1"
+syn = "1"
+synstructure = "0.12.2"

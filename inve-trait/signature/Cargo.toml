@@ -1,0 +1,32 @@
+[package]
+name          = "inve-signature"
+description   = "Traits for cryptographic signature algorithms (e.g. ECDSA, Ed25519)"
+version       = "0.0.1"
+license       = "Apache-2.0"
+readme        = "README.md"
+edition       = "2018"
+keywords      = ["crypto", "ecdsa", "ed25519", "signature", "signing"]
+categories    = ["cryptography", "no-std"]
+
+[dependencies]
+digest = { path = "../digest", package = "inve-digest", optional = true, default-features = false }
+rand_core = { version = "0.6", optional = true, default-features = false }
+signature_derive = { optional = true, path = "derive" }
+
+[dev-dependencies]
+hex-literal = "0.2.2"
+sha2 = { path = "../../inve-hash/sha2", package = "inve-sha2", default-features = false }
+
+[features]
+default = ["std"]
+std = []
+
+# Preview features are unstable and exempt from semver.
+# See https://docs.rs/signature/latest/signature/#unstable-features for more information.
+derive-preview = ["digest-preview", "signature_derive"]
+digest-preview = ["digest"]
+rand-preview = ["rand_core"]
+
+[package.metadata.docs.rs]
+all-features = true
+rustdoc-args = ["--cfg", "docsrs"]

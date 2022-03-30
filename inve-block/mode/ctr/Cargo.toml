@@ -1,0 +1,29 @@
+[package]
+name = "inve-ctr"
+version = "0.0.1"
+description = "CTR block modes of operation."
+license = "Apache-2.0"
+edition = "2021"
+rust-version = "1.57"
+keywords = ["crypto", "block-mode", "stream-cipher", "ciphers"]
+categories = ["cryptography", "no-std"]
+
+[dependencies]
+cipher = { path = "../../../inve-trait/cipher", package = "inve-cipher" }
+
+[dev-dependencies]
+aes = { path = "../../cipher/aes", package = "inve-aes" }
+magma = { path = "../../cipher/magma", package = "inve-magma" }
+kuznyechik = { path = "../../cipher/kuznyechik", package = "inve-kuznyechik" }
+cipher = { path = "../../../inve-trait/cipher", package = "inve-cipher", features = ["dev"] }
+hex-literal = "0.3.3"
+
+[features]
+alloc = ["cipher/alloc"]
+std = ["cipher/std", "alloc"]
+block-padding = ["cipher/block-padding"]
+zeroize = ["cipher/zeroize"]
+
+[package.metadata.docs.rs]
+all-features = true
+rustdoc-args = ["--cfg", "docsrs"]

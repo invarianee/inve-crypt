@@ -1,0 +1,48 @@
+[package]
+name = "examples"
+version = "0.0.1"
+publish = false
+edition = "2021"
+
+[dependencies]
+aes-gcm = { path = "../inve-aes-gcm", package = "inve-aes-gcm" }
+chacha20poly1305 = { path = "../inve-chacha20poly1305", package = "inve-chacha20poly1305" }
+xsalsa20poly1305 = { path = "../inve-xsalsa20poly1305", package = "inve-xsalsa20poly1305" }
+rsa = { path = "../inve-rsa", package = "inve-rsa" }
+ed25519 = { path = "../inve-ed25519/ed25519", package = "inve-ed25519" }
+ed25519-impl = { path = "../inve-ed25519/ed25519-impl", package = "inve-ed25519-impl" }
+ecdsa-k256 = { path = "../inve-ecdsa/ecdsa-k256", package = "inve-ecdsa-k256" }
+ecdsa-p256 = { path = "../inve-ecdsa/ecdsa-p256", package = "inve-ecdsa-p256" }
+rand = { version = "0.8" }
+rand_core = { version = "0.6.3", default-features = false }
+sha1 = { path = "../inve-hash/sha1", package = "inve-sha1", default-features = false }
+sha2 = { path = "../inve-hash/sha2", package = "inve-sha2", default-features = false }
+sha3 = { path = "../inve-hash/sha3", package = "inve-sha3", default-features = false }
+
+[[example]]
+name = "aes_gcm_test"
+path = "aes_gcm_test.rs"
+
+[[example]]
+name = "chacha20"
+path = "chacha20.rs"
+
+[[example]]
+name = "xsalsa20"
+path = "xsalsa20.rs"
+
+[[example]]
+name = "rsa_test"
+path = "rsa_test.rs"
+
+[[example]]
+name = "ed25519_test"
+path = "ed25519_test.rs"
+
+[[example]]
+name = "ecdsa_k256_test"
+path = "ecdsa_k256_test.rs"
+
+[[example]]
+name = "ecdsa_p256_test"
+path = "ecdsa_p256_test.rs"

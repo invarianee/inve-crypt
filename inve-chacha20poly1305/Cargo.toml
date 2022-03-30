@@ -1,0 +1,31 @@
+[package]
+name = "inve-chacha20poly1305"
+version = "0.0.1"
+description = "Pure Rust implementation of the ChaCha20Poly1305 Authenticated Encryption."
+edition = "2021"
+license = "Apache-2.0"
+keywords = ["aead", "chacha20", "poly1305", "xchacha20", "xchacha20poly1305"]
+categories = ["cryptography", "no-std"]
+
+[dependencies]
+aead = { path = "../inve-trait/aead", package = "inve-aead", default-features = false }
+chacha20 = { path = "../inve-stream-cipher/chacha20", package = "inve-chacha20", features = ["zeroize"] }
+cipher = { path = "../inve-trait/cipher", package = "inve-cipher" }
+poly1305 = { path = "../inve-hash/poly1305", package = "inve-poly1305" }
+zeroize = { version = "1", default-features = false }
+
+[dev-dependencies]
+aead = { path = "../inve-trait/aead", package = "inve-aead", features = ["dev"], default-features = false }
+
+[features]
+default = ["alloc"]
+std = ["aead/std", "alloc"]
+alloc = ["aead/alloc"]
+heapless = ["aead/heapless"]
+stream = ["aead/stream"]
+reduced-round = []
+force-soft = ["poly1305/force-soft"]
+
+[package.metadata.docs.rs]
+all-features = true
+rustdoc-args = ["--cfg", "docsrs"]

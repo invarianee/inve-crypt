@@ -1,0 +1,20 @@
+[package]
+name = "inve-sha3"
+version = "0.0.1"
+description = "SHA-3 (Keccak) hash function."
+license = "Apache-2.0"
+edition = "2021"
+keywords = ["crypto", "sha3", "keccak", "hash", "digest"]
+categories = ["cryptography", "no-std"]
+
+[dependencies]
+digest = { path = "../../inve-trait/digest", package = "inve-digest" }
+keccak = "0.1"
+
+[dev-dependencies]
+digest = { path = "../../inve-trait/digest", package = "inve-digest", features = ["dev"] }
+hex-literal = "0.2.2"
+
+[features]
+default = ["std"]
+std = ["digest/std"]

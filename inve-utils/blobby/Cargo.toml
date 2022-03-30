@@ -1,0 +1,10 @@
+[package]
+name = "inve-blobby"
+version = "0.0.1"
+license = "Apache-2.0"
+description = "Iterator over simple binary blob storage."
+categories = ["no-std"]
+edition = "2021"
+
+[dev-dependencies]
+hex = "0.4"

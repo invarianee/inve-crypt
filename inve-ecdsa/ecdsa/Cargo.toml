@@ -1,0 +1,40 @@
+[package]
+name    = "inve-ecdsa"
+version = "0.0.1"
+description = "Pure Rust implementation of the Elliptic Curve Digital Signature Algorithm."
+license = "Apache-2.0"
+categories = ["cryptography", "no-std"]
+keywords = ["crypto", "ecc", "nist", "secp256k1", "signature"]
+edition = "2021"
+rust-version = "1.57"
+
+[dependencies]
+elliptic-curve = { path = "../../inve-elliptic-curve", package = "inve-elliptic-curve", default-features = false, features = ["digest", "sec1"] }
+signature = { path = "../../inve-trait/signature", package = "inve-signature", default-features = false, features = ["rand-preview"] }
+
+# optional dependencies
+der = { version = "0.5", optional = true }
+rfc6979 = { path = "../rfc6979", package = "inve-rfc6979", optional = true }
+
+[dev-dependencies]
+elliptic-curve = { path = "../../inve-elliptic-curve", package = "inve-elliptic-curve", default-features = false, features = ["dev"] }
+hex-literal = "0.3"
+sha2 = { path = "../../inve-hash/sha2", package = "inve-sha2", default-features = false }
+
+[features]
+default = ["digest"]
+alloc = []
+arithmetic = ["elliptic-curve/arithmetic"]
+dev = ["arithmetic", "digest", "elliptic-curve/dev", "hazmat"]
+digest = ["signature/digest-preview"]
+hazmat = []
+pkcs8 = ["elliptic-curve/pkcs8", "der"]
+pem = ["elliptic-curve/pem", "pkcs8"]
+serde = ["elliptic-curve/serde"]
+sign = ["arithmetic", "digest", "hazmat", "rfc6979"]
+std = ["alloc", "elliptic-curve/std", "signature/std"]
+verify = ["arithmetic", "digest", "hazmat"]
+
+[package.metadata.docs.rs]
+all-features = true
+rustdoc-args = ["--cfg", "docsrs"]

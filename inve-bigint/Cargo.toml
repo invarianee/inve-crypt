@@ -1,0 +1,37 @@
+[package]
+name = "inve-bigint"
+version = "0.0.1"
+description = "Pure Rust implementation of a big integer library."
+license = "Apache-2.0"
+categories = ["algorithms", "cryptography", "data-structures", "mathematics", "no-std"]
+keywords = ["arbitrary", "crypto", "bignum", "integer", "precision"]
+resolver = "2"
+edition = "2021"
+rust-version = "1.57"
+
+[dependencies]
+subtle = { version = "2.4", default-features = false }
+
+# optional dependencies
+der = { version = "=0.6.0-pre.3", optional = true, default-features = false }
+generic-array = { version = "0.14", optional = true }
+rand_core = { version = "0.6", optional = true }
+rlp = { version = "0.5", optional = true, default-features = false }
+zeroize = { version = "1", optional = true,  default-features = false }
+
+[dev-dependencies]
+hex-literal = "0.3"
+num-bigint = "0.4"
+num-traits = "0.2"
+proptest = "1"
+rand_core = { version = "0.6", features = ["std"] }
+rand_chacha = "0.3"
+
+[features]
+default = ["rand"]
+alloc = []
+rand = ["rand_core/std"]
+
+[package.metadata.docs.rs]
+all-features = true
+rustdoc-args = ["--cfg", "docsrs"]

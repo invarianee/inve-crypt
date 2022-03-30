@@ -1,0 +1,23 @@
+[package]
+name = "inve-sm4"
+version = "0.0.1"
+description = "SM4 block cipher algorithm."
+license = "Apache-2.0"
+edition = "2021"
+rust-version = "1.57"
+keywords = ["crypto", "sm4", "block-cipher"]
+categories = ["cryptography", "no-std"]
+
+[dependencies]
+cipher = { path = "../../../inve-trait/cipher", package = "inve-cipher" }
+
+[dev-dependencies]
+cipher = { path = "../../../inve-trait/cipher", package = "inve-cipher", features = ["dev"] }
+hex-literal = "0.3"
+
+[features]
+zeroize = ["cipher/zeroize"]
+
+[package.metadata.docs.rs]
+all-features = true
+rustdoc-args = ["--cfg", "docsrs"]

@@ -1,0 +1,31 @@
+[package]
+name = "inve-sha1"
+version = "0.0.1"
+description = "SHA-1 hash function."
+license = "Apache-2.0"
+edition = "2021"
+keywords = ["crypto", "sha1", "hash", "digest"]
+categories = ["cryptography", "no-std"]
+
+[dependencies]
+digest = { path = "../../inve-trait/digest", package = "inve-digest" }
+cfg-if = "1.0"
+sha1-asm = { version = "0.5", optional = true }
+
+[target.'cfg(any(target_arch = "aarch64", target_arch = "x86", target_arch = "x86_64"))'.dependencies]
+cpufeatures = "0.2"
+
+[dev-dependencies]
+digest = { path = "../../inve-trait/digest", package = "inve-digest", features = ["dev"] }
+hex-literal = "0.2.2"
+
+[features]
+default = ["std"]
+std = ["digest/std"]
+asm = ["sha1-asm"] # WARNING: this feature SHOULD NOT be enabled by library crates
+compress = [] # Expose compress function
+force-soft = [] # Force software implementation
+
+[package.metadata.docs.rs]
+all-features = true
+rustdoc-args = ["--cfg", "docsrs"]

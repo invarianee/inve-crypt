@@ -1,0 +1,24 @@
+[package]
+name = "inve-salsa20"
+version = "0.0.1"
+description = "Salsa20 Stream Cipher."
+license = "Apache-2.0"
+edition = "2021"
+rust-version = "1.57"
+keywords = ["crypto", "stream-cipher", "trait", "xsalsa20"]
+categories = ["cryptography", "no-std"]
+
+[dependencies]
+cipher = { path = "../../inve-trait/cipher", package = "inve-cipher" }
+
+[dev-dependencies]
+cipher = { path = "../../inve-trait/cipher", package = "inve-cipher", features = ["dev"] }
+hex-literal = "0.3.3"
+
+[features]
+std = ["cipher/std"]
+zeroize = ["cipher/zeroize"]
+
+[package.metadata.docs.rs]
+all-features = true
+rustdoc-args = ["--cfg", "docsrs"]

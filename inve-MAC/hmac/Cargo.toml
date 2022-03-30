@@ -1,0 +1,26 @@
+[package]
+name = "inve-hmac"
+version = "0.0.1"
+description = "Generic implementation of Hash-based Message Authentication Code (HMAC)."
+license = "Apache-2.0"
+edition = "2021"
+keywords = ["crypto", "mac", "hmac", "digest"]
+categories = ["cryptography", "no-std"]
+
+[dependencies]
+digest = { path = "../../inve-trait/digest", package = "inve-digest", features = ["mac"] }
+
+[dev-dependencies]
+digest = { path = "../../inve-trait/digest", package = "inve-digest", features = ["dev"] }
+md-5 = { version = "0.10", default-features = false }
+sha2 = { path = "../../inve-hash/sha2", package = "inve-sha2", default-features = false }
+streebog = { version = "0.10", default-features = false }
+hex-literal = "0.2.2"
+
+[features]
+std = ["digest/std"]
+reset = [] # Enable ability to reset HMAC instances
+
+[package.metadata.docs.rs]
+all-features = true
+rustdoc-args = ["--cfg", "docsrs"]

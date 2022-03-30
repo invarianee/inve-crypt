@@ -1,0 +1,32 @@
+[package]
+name = "inve-sha2"
+version = "0.0.1"
+description = "Pure Rust implementation of the SHA-2 hash function family."
+license = "Apache-2.0"
+edition = "2021"
+keywords = ["crypto", "sha2", "hash", "digest"]
+categories = ["cryptography", "no-std"]
+
+[dependencies]
+digest = { path = "../../inve-trait/digest", package = "inve-digest" }
+cfg-if = "1.0"
+sha2-asm = { version = "0.6.1", optional = true }
+
+[target.'cfg(any(target_arch = "aarch64", target_arch = "x86_64", target_arch = "x86"))'.dependencies]
+cpufeatures = "0.2"
+
+[dev-dependencies]
+digest = { path = "../../inve-trait/digest", package = "inve-digest", features = ["dev"] }
+hex-literal = "0.2.2"
+
+[features]
+default = ["std"]
+std = ["digest/std"]
+asm = ["sha2-asm"] # WARNING: this feature SHOULD NOT be enabled by library crates
+compress = [] # Expose compress functions
+force-soft = [] # Force software implementation
+asm-aarch64 = ["asm"] # DEPRECATED: use `asm` instead
+
+[package.metadata.docs.rs]
+all-features = true
+rustdoc-args = ["--cfg", "docsrs"]
